@@ -12,10 +12,17 @@ const { publicRuntimeConfig } = getConfig();
 export default function Home(props)
 {
     const { orderData, sig } = props;
+    const payBtnId = 'pay-button';
 
     return (
         <Layout>
+
+
+            <button id={payBtnId}>Pay now</button>
+
+
             <WidgetComponent
+                payButton={`#${payBtnId}`}
                 merchantPosId={orderData.merchantPosId}
                 shopName={orderData.shopName}
                 totalAmount={orderData.totalAmount}
@@ -26,21 +33,24 @@ export default function Home(props)
                 storeCard={true}
                 recurringPayment={true}
                 payUBrand={true}
-                widgetMode={WidgetMode.pay}
-                successCallback={"todo"}
+                widgetMode={WidgetMode.use}
+                //successCallback={}
                 sig={sig}
             />
+
         </Layout>
     )
 }
 
-Home.getInitialProps = async ({ query, req, res }) =>
-{
+export async function getServerSideProps() {
+    const { serverRuntimeConfig } = getConfig();
     const orderData = require("../tests/fixtures/mockData.json");
-    const sig = Sig(orderData);
+    const sig = Sig(orderData,  serverRuntimeConfig.MERCHANT_POS_SECOND_KEY_MD5);
 
     return {
-        orderData: orderData,
-        sig: sig
+        props: {
+            orderData: orderData,
+            sig: sig
+        }
     }
-};
+}

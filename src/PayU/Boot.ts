@@ -15,13 +15,12 @@ function getHost(): Mode
     }
 
     mode = mode.toLowerCase();
-    let modes = Object.keys(Mode);
 
-    if(mode == modes[Mode.sandbox]) {
+    if(mode == Mode.sandbox) {
         return Mode.sandbox;
     }
 
-    if(mode == modes[Mode.production]){
+    if(mode == Mode.production){
         return Mode.production;
     }
 
