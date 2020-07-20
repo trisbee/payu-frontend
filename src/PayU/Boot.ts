@@ -1,4 +1,4 @@
-import Environment from "./enum/Environment";
+import { Mode, ModeHosts } from "./enum/Mode";
 import getConfig from "next/config";
 
 const { publicRuntimeConfig } = getConfig();
@@ -6,27 +6,28 @@ const { publicRuntimeConfig } = getConfig();
 /**
  * load env variable, validate it with enum and return host URL
  */
-function getHost(): string
+function getHost(): Mode
 {
-    let mode = publicRuntimeConfig.MODE;
+    let mode = publicRuntimeConfig.MERCHANT_MODE;
     if(null == mode) {
         console.error("Missing specified mode in ENV! Fallback to sandbox.");
-        mode = Environment.sandbox;
+        return Mode.sandbox;
     }
 
     mode = mode.toLowerCase();
+    let modes = Object.keys(Mode);
 
-    if(mode == Environment.sandbox) {
-        return Environment.sandbox;
+    if(mode == modes[Mode.sandbox]) {
+        return Mode.sandbox;
     }
 
-    if(mode == Environment.production){
-        return Environment.production;
+    if(mode == modes[Mode.production]){
+        return Mode.production;
     }
 
     console.error("Mode is not specified well in ENV! Fallback to sandbox.");
 
-    return Environment.sandbox;
+    return Mode.sandbox;
 }
 
 /**
@@ -35,7 +36,9 @@ function getHost(): string
 function getScriptUrl(): string
 {
     const scriptUrl = "/front/widget/js/payu-bootstrap.js";
-    return getHost() + scriptUrl;
+    const hostUrl = ModeHosts[getHost()];
+
+    return `${hostUrl}${scriptUrl}`;
 }
 
 /**
@@ -43,7 +46,7 @@ function getScriptUrl(): string
  */
 function getLanguage(): string
 {
-    return "cs";
+    return "en";
 }
 
 export {

@@ -5,26 +5,21 @@ export default function Layout(props)
 {
     return (
         <div className="container">
-            // @ts-ignore
             <Head>
                 <title>PayU payment</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
             </Head>
 
             <main>
-
                 <h1 className="title">
                     Welcome to Trisbee Payment
                 </h1>
-
                 <div id={"content"}>
-                    {props.child}
+                    {props.children}
                 </div>
-
             </main>
 
-
-            <style jsx global>{`
+            <style>{`
                 html,
                 body {
                   padding: 0;

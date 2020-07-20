@@ -1,45 +1,46 @@
+import React from "react";
 import getConfig from 'next/config';
 import Sig from "../src/PayU/Sig";
 import Layout from "../src/components/Layout";
 import WidgetComponent from "../src/PayU/WidgetComponent";
 import WidgetType from "../src/PayU/enum/WidgetType";
 import WidgetMode from "../src/PayU/enum/WidgetMode";
+import BaseProps from "../src/PayU/Widgets/BaseProps";
 
 const { publicRuntimeConfig } = getConfig();
 
 export default function Home(props)
 {
-    const { order, sig } = props;
+    const { orderData, sig } = props;
+
     return (
         <Layout>
             <WidgetComponent
-                merchantPosId={publicRuntimeConfig.MERCHANT_POS_ID}
-                shopName={order.shopName}
-                totalAmount={order.totalAmount}
-                currencyCode={order.currencyCode}
-                customerLanguage={order.customerLanguage}
-                customerEmail={order.customerEmail}
+                merchantPosId={orderData.merchantPosId}
+                shopName={orderData.shopName}
+                totalAmount={orderData.totalAmount}
+                currencyCode={orderData.currencyCode}
+                customerLanguage={orderData.customerLanguage}
+                customerEmail={orderData.customerEmail}
                 widgetType={WidgetType.ccv}
                 storeCard={true}
                 recurringPayment={true}
-                payUBrand={false}
+                payUBrand={true}
                 widgetMode={WidgetMode.pay}
-                successCallback={"@todo"}
+                successCallback={"todo"}
                 sig={sig}
             />
         </Layout>
     )
 }
 
-export async function getStaticProps(context)
+Home.getInitialProps = async ({ query, req, res }) =>
 {
-    const orderData = require("../tests/fixtures/mockData");
+    const orderData = require("../tests/fixtures/mockData.json");
     const sig = Sig(orderData);
 
     return {
-        props: {
-            order: orderData,
-            sig: sig
-        }
+        orderData: orderData,
+        sig: sig
     }
-}
+};
