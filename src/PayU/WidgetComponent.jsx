@@ -1,8 +1,5 @@
-import getConfig from "next/config";
 import React from "react";
-import InlineWidgetProps from "./Widgets/InlineWidgetProps";
-import { Mode } from "./enum/Mode";
-import { getScriptUrl } from "./Boot";
+import {getScriptUrl} from "./Boot";
 
 function WidgetComponent(props)
 {

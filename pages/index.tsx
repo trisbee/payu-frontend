@@ -30,11 +30,10 @@ export default function Home(props)
                 customerLanguage={orderData.customerLanguage}
                 customerEmail={orderData.customerEmail}
                 widgetType={WidgetType.ccv}
-                storeCard={true}
-                recurringPayment={true}
-                payUBrand={true}
-                widgetMode={WidgetMode.use}
-                //successCallback={}
+                storeCard={orderData.storeCard}
+                recurringPayment={orderData.recurringPayment}
+                payUBrand={orderData.payUBrand}
+                widgetMode={orderData.widgetMode}
                 sig={sig}
             />
 
