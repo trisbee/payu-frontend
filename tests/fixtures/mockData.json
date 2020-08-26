@@ -5,8 +5,8 @@
     "merchantPosId": "391548",
     "shopName": "frontend-widget",
     "totalAmount": "9.30",
-    "widgetMode": "pay",
+    "widgetMode": "use",
     "storeCard": true,
     "recurringPayment": false,
-    "payUBrand": true
+    "payUBrand": false
 }

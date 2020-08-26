@@ -19,8 +19,12 @@ export default function Home(props)
 
 
             <form action="http://localhost:3000/api/processOrder" method="POST">
-                <button id={payBtnId}>Pay now</button>
+                <button style={{display: orderData.widgetMode === 'use' ? 'none': 'block'}} id={payBtnId}>Pay now</button>
+                {orderData.widgetMode === 'use' && (
+                    <div id="payu-widget"/>
+                )}
             </form>
+
 
 
             <WidgetComponent
