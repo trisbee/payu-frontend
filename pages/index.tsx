@@ -18,7 +18,9 @@ export default function Home(props)
         <Layout>
 
 
-            <button id={payBtnId}>Pay now</button>
+            <form action="http://localhost:3000/api/processOrder" method="POST">
+                <button id={payBtnId}>Pay now</button>
+            </form>
 
 
             <WidgetComponent
