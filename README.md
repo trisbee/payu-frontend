@@ -1,10 +1,16 @@
 # PayU Widget implementation
 
+![Example](./.github/preview.png)
+
+## Start app
+
 1. npm install
 2. `cp example.env env`
 3. change variables in `.env` file
-4. npm run dev
-5. app running on: http://localhost:3003
+4. copy `/tests/fixtures/example.mockData.json` to `mockData.json`
+5. change values in `mockData.json` to yours
+6. npm run dev
+7. app running on: http://localhost:3003
 
 ## Environments
 
