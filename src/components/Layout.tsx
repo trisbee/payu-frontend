@@ -12,7 +12,7 @@ export default function Layout(props)
 
             <main>
                 <h1 className="title">
-                    Welcome to Trisbee Payment
+                    Sandbox checkout
                 </h1>
                 <div id={"content"}>
                     {props.children}
@@ -32,6 +32,31 @@ export default function Layout(props)
                 * {
                   box-sizing: border-box;
                 }
+                
+                h1 {
+                    text-align: center;
+                }
+                
+                .error-message {
+                    padding: 15px;
+                    margin: 15px;
+                    border: 1px solid red;
+                    border-radius: 4px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    white-space: pre-line;
+                }
+                
+                #payu-widget {
+                  max-width: 450px;
+                  margin: 0 auto;
+                }
+                
+                #payu-widget > iframe {
+                    border: 1px solid #9f9f9f !important;
+                    border-radius: 4px;
+                }
+                
             `}
             </style>
         </div>

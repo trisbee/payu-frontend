@@ -23,13 +23,9 @@ function Sig(orderData: Order, privateKey: string): string
             valuesForSig+=orderData[key];
         });
 
-    console.log("----------- sig creation #1", valuesForSig);
-
     if(null !== privateKey) {
         valuesForSig+=privateKey;
     }
-
-    console.log("---------- sig creation #2", valuesForSig);
 
     return sha256(valuesForSig);
 }
